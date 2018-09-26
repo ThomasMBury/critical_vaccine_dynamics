@@ -1,0 +1,28 @@
+% Average and error bars of vaccination coverage
+
+% Import data
+data_filt = importdata('data_filt.txt');
+time_indices = data_filt(:,1);
+num_realisations = (size(ac_struct,2)-2)/3;
+
+% Construct vaccine data
+sus_series = data_filt(:,3:3:end);
+vacc_series = data_filt(:,3:3:end);
+
+% Find average and standard deviation
+sus_mean = mean(sus_series,2);
+sus_std = std(sus_series,2);
+
+vacc_mean = mean(vacc_series,2);
+vacc_std = std(vacc_series,2);
+
+% Plot average and std
+shadedErrorBar(time_indices,sus_mean,sus_std,'r'); 
+set(gca,'FontSize',12)          % Font size
+xlabel('t (years)')
+ylabel('Prop. Vaccinated')
+
+
+
+
+
